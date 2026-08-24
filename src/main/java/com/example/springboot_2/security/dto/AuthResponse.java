@@ -1,11 +1,13 @@
-package com.example.springboot_2.dto.security;
+package com.example.springboot_2.security.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class AuthResponse {
-    private String token;
-    public AuthResponse(String token){
-        this.token=token;
-    }
-    public String getToken(){
-        return token;
-    }
+    private String accessToken;
+    private String refreshToken;
+
 }
+

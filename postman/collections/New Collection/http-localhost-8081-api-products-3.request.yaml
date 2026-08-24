@@ -1,0 +1,8 @@
+$kind: http-request
+name: http://localhost:8081/api/products/3
+description: ""
+url: http://localhost:8081/api/products/3
+method: DELETE
+auth:
+  type: bearer
+order: 1786198554576

@@ -1,7 +1,6 @@
-package com.example.springboot_2.service.User;
+package com.example.springboot_2.dto;
 
 import com.example.springboot_2.model.User.Role;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import java.util.HashSet;

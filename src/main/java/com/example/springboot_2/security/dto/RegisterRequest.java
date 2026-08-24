@@ -1,4 +1,4 @@
-package com.example.springboot_2.dto.security;
+package com.example.springboot_2.security.dto;
 
 import lombok.Getter;
 import lombok.Setter;

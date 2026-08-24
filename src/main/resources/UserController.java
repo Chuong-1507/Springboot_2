@@ -1,7 +1,7 @@
 package com.example.springboot_2.controller.User;
+package com.example.springboot_2.service.UserResponse;
 
 import com.example.springboot_2.dto.ApiResponse;
-import com.example.springboot_2.dto.UserResponse;
 import com.example.springboot_2.model.Product.Product;
 import com.example.springboot_2.model.User.User;
 import com.example.springboot_2.service.User.UserService;

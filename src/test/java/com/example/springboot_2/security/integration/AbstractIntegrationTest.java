@@ -1,4 +1,4 @@
-package com.example.springboot_2.security;
+package com.example.springboot_2.security.integration;
 
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
