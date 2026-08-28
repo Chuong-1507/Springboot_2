@@ -1,0 +1,43 @@
+#Docker Compose dùng đề quản lý và chạy nhiều Docker container cùng lúc bằng một file cấu hình
+#Docker tự tạo mạng nội bộ để app + MySQL có thể gọi nhau bằng tên service (thay vì localhost)
+services:
+#  MySQL container
+  mysql:
+    image: mysql:8.0
+    container_name: springboot2-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - "3307:3306"   # map ra 3307 ở máy host để tránh đụng MySQL local (nếu có) đang chiếm 3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+#  Spring Boot container
+  app:
+    build: .
+    container_name: springboot2-app
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/springboot_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION: ${JWT_EXPIRATION}
+
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+    ports:
+      - "8081:8080"
+
+#Lưu toàn bộ vào directory mysql_data
+volumes:
+  mysql_data:
